@@ -75,7 +75,7 @@ public class GridPaneSample extends Application {
 		root.setPadding(new Insets(5));
 		root.setHgap(5);
 		root.setVgap(5);
-		root.setGridLinesVisible(true);
+//		root.setGridLinesVisible(true);
 //		root.setStyle("-fx-background-color: orange;");
 		root.addRow(0, new Label("Nombre:"), nombreText);
 		root.addRow(1, new Label("Apellidos:"), apellidosText);
