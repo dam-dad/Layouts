@@ -16,10 +16,10 @@ public class FlowPaneSample extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		
 		FlowPane root = new FlowPane();
-		root.setHgap(25);
-		root.setVgap(5);
-		root.setAlignment(Pos.TOP_LEFT);
-		root.setOrientation(Orientation.VERTICAL);
+		root.setHgap(2);
+		root.setVgap(15);
+		root.setAlignment(Pos.CENTER);
+		root.setOrientation(Orientation.HORIZONTAL);
 
 		for (int i = 0; i < 50; i++) {
 			

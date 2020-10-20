@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -16,11 +17,14 @@ public class AboutEclipse extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+		
+		Button b1 = new Button();
+		b1.setGraphic(new ImageView("images/eclipse-icon-24px.png"));
 
 		HBox pluginsBox = new HBox();
 		pluginsBox.setAlignment(Pos.BASELINE_LEFT);
 		pluginsBox.setSpacing(5);
-		pluginsBox.getChildren().addAll(new Button("B1"), new Button("B2"), new Button("B3"), new Button("B1"), new Button("B2"), new Button("B3"));
+		pluginsBox.getChildren().addAll(b1, new Button("B1"), new Button("B2"), new Button("B3"), new Button("B1"), new Button("B2"), new Button("B3"));
 		
 		BorderPane botonesBox = new BorderPane();
 		botonesBox.setLeft(new Button("Installation Details"));
@@ -48,10 +52,10 @@ public class AboutEclipse extends Application {
 		
 		primaryStage.setTitle("Aboud Eclipse IDE");
 		primaryStage.setScene(scene);
-		primaryStage.getIcons().add(new Image("/eclipse-icon-24px.png"));
-		primaryStage.getIcons().add(new Image("/eclipse-icon-32px.png"));
-		primaryStage.getIcons().add(new Image("/eclipse-icon-48px.png"));
-		primaryStage.getIcons().add(new Image("/eclipse-icon-64px.png"));
+		primaryStage.getIcons().add(new Image("images/eclipse-icon-24px.png"));
+		primaryStage.getIcons().add(new Image("images/eclipse-icon-32px.png"));
+		primaryStage.getIcons().add(new Image("images/eclipse-icon-48px.png"));
+		primaryStage.getIcons().add(new Image("images/eclipse-icon-64px.png"));
 		primaryStage.show();
 		
 	}

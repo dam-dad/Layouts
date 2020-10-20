@@ -28,7 +28,8 @@ public class BorderPaneSample extends Application {
 		este.setStyle("-fx-background-color: orange;");
 		
 		Pane oeste = new Pane();
-		oeste.setPrefWidth(25);
+		oeste.setPrefWidth(50);
+		oeste.setPrefHeight(20);
 		oeste.setStyle("-fx-background-color: blue;");
 		
 		Pane centro = new Pane();
