@@ -16,12 +16,15 @@ import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
+import javafx.scene.layout.RowConstraints;
 import javafx.stage.Stage;
 
 public class GridPaneSample extends Application {
@@ -41,6 +44,7 @@ public class GridPaneSample extends Application {
 	private RadioButton hombreRadio;
 	private RadioButton mujerRadio;
 	private Label edadLabel;
+	private TextArea descriptionText;
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -67,15 +71,19 @@ public class GridPaneSample extends Application {
 		
 		hombreRadio = new RadioButton("Hombre");
 		mujerRadio = new RadioButton("Mujer");
-		
+
 		ToggleGroup sexoGroup = new ToggleGroup();
 		sexoGroup.getToggles().addAll(hombreRadio, mujerRadio);
+		
+		sexoGroup.selectedToggleProperty().addListener((o, ov, nv) -> System.out.println(((RadioButton)nv).getText()));
+		
+		descriptionText = new TextArea();
 		
 		GridPane root = new GridPane();
 		root.setPadding(new Insets(5));
 		root.setHgap(5);
 		root.setVgap(5);
-//		root.setGridLinesVisible(true);
+		root.setGridLinesVisible(true);
 //		root.setStyle("-fx-background-color: orange;");
 		root.addRow(0, new Label("Nombre:"), nombreText);
 		root.addRow(1, new Label("Apellidos:"), apellidosText);
@@ -83,6 +91,7 @@ public class GridPaneSample extends Application {
 		root.addRow(3, new Label("Fecha de nacimiento:"), fechaNacPicker);
 		root.addRow(4, new Label("IBAN:"), new HBox(5, ibanText));
 		root.addRow(5, new Label("Sexo:"), new HBox(5, hombreRadio, mujerRadio));
+		root.addRow(6, new Label("Descripción:"), descriptionText);
 		root.add(edadLabel, 2, 3);
 		
 		ColumnConstraints [] cols = {
@@ -91,11 +100,31 @@ public class GridPaneSample extends Application {
 		};
 		root.getColumnConstraints().setAll(cols);
 		
-		cols[0].setHalignment(HPos.RIGHT);
+		// restricciones columna 0
+		cols[0].setHalignment(HPos.CENTER);
+		
+		// restricciones columna 1
 		cols[1].setHgrow(Priority.ALWAYS);
 		cols[1].setFillWidth(true);
 		
+		// hace que el cuadro de texto del dni no ocupe toda su celda
 		GridPane.setFillWidth(dniText, false);
+
+		RowConstraints [] rows = {
+				new RowConstraints(),	
+				new RowConstraints(),	
+				new RowConstraints(),	
+				new RowConstraints(),	
+				new RowConstraints(),	
+				new RowConstraints(),	
+				new RowConstraints(),	
+			};
+		root.getRowConstraints().setAll(rows);
+		
+		rows[6].setVgrow(Priority.ALWAYS);
+		
+		
+		GridPane.setColumnSpan(descriptionText, 2);
 		
 		
 		Scene scene = new Scene(root, 640, 480);
