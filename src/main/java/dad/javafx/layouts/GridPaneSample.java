@@ -71,41 +71,50 @@ public class GridPaneSample extends Application {
 		
 		hombreRadio = new RadioButton("Hombre");
 		mujerRadio = new RadioButton("Mujer");
+		RadioButton perroRadio = new RadioButton("Perro");
+		RadioButton gatoRadio = new RadioButton("Gato");
+		ToggleButton serpienteButton = new ToggleButton("Serpiente");
 
 		ToggleGroup sexoGroup = new ToggleGroup();
-		sexoGroup.getToggles().addAll(hombreRadio, mujerRadio);
-		
-		sexoGroup.selectedToggleProperty().addListener((o, ov, nv) -> System.out.println(((RadioButton)nv).getText()));
+		sexoGroup.getToggles().addAll(hombreRadio, mujerRadio, perroRadio, gatoRadio, serpienteButton);
+		sexoGroup.selectedToggleProperty().addListener((o, ov, nv) -> System.out.println(((ToggleButton)nv).getText()));
 		
 		descriptionText = new TextArea();
+		
+		Label descripcionLabel = new Label("Descripción:");
 		
 		GridPane root = new GridPane();
 		root.setPadding(new Insets(5));
 		root.setHgap(5);
 		root.setVgap(5);
 		root.setGridLinesVisible(true);
-//		root.setStyle("-fx-background-color: orange;");
 		root.addRow(0, new Label("Nombre:"), nombreText);
 		root.addRow(1, new Label("Apellidos:"), apellidosText);
 		root.addRow(2, new Label("DNI:"), dniText);
 		root.addRow(3, new Label("Fecha de nacimiento:"), fechaNacPicker);
 		root.addRow(4, new Label("IBAN:"), new HBox(5, ibanText));
-		root.addRow(5, new Label("Sexo:"), new HBox(5, hombreRadio, mujerRadio));
-		root.addRow(6, new Label("Descripción:"), descriptionText);
+		root.addRow(5, new Label("Sexo:"), new HBox(5, hombreRadio, mujerRadio, perroRadio, gatoRadio, serpienteButton));
+		root.addRow(6, descripcionLabel, descriptionText);
 		root.add(edadLabel, 2, 3);
 		
 		ColumnConstraints [] cols = {
+			new ColumnConstraints(),	
 			new ColumnConstraints(),	
 			new ColumnConstraints(),	
 		};
 		root.getColumnConstraints().setAll(cols);
 		
 		// restricciones columna 0
-		cols[0].setHalignment(HPos.CENTER);
+		cols[0].setHalignment(HPos.RIGHT);
 		
 		// restricciones columna 1
 		cols[1].setHgrow(Priority.ALWAYS);
 		cols[1].setFillWidth(true);
+
+		// restricciones colummna 2
+		cols[2].setHgrow(Priority.NEVER);
+		
+		GridPane.setHalignment(descripcionLabel, HPos.LEFT);
 		
 		// hace que el cuadro de texto del dni no ocupe toda su celda
 		GridPane.setFillWidth(dniText, false);
@@ -121,11 +130,11 @@ public class GridPaneSample extends Application {
 			};
 		root.getRowConstraints().setAll(rows);
 		
-		rows[6].setVgrow(Priority.ALWAYS);
-		
+		rows[3].setVgrow(Priority.ALWAYS);
 		
 		GridPane.setColumnSpan(descriptionText, 2);
 		
+		GridPane.setColumnSpan(nombreText, 2);
 		
 		Scene scene = new Scene(root, 640, 480);
 		
