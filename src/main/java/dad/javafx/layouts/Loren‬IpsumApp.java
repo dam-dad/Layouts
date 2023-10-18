@@ -18,7 +18,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 
-public class Loren‬IpsumApp extends Application {
+public class LoremIpsumApp extends Application {
 	
 	// model
 	
